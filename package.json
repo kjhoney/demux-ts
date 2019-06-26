@@ -1,0 +1,25 @@
+{
+  "name": "demux-ts",
+  "version": "0.0.1",
+  "author": {
+    "name": "emperor han"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "demux": "^4.0.0",
+    "demux-eos": "4.0.1",
+    "dotenv": "^8.0.0",
+    "massive": "^5.11.0",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.5.15"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "nodemon": "^1.18.11",
+    "tsc-watch": "^2.2.1",
+    "typescript": "^3.5.2"
+  },
+  "scripts": {
+    "start": "tsc-watch --onSuccess \" node dist/index.js\" "
+  }
+}
