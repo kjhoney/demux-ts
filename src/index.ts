@@ -11,6 +11,7 @@ import { NodeosActionReader } from "demux-eos";
 import { NodeosActionReaderOptions } from "./types/types";
 import { ObjectActionHandler } from "./ObjectActionHandler";
 import { handlerVersion } from "./handlerVersions/v1";
+import { log } from "util";
 
 /*
  * This ObjectActionHandler, which does not change the signature from its parent AbstractActionHandler, takes an array
@@ -18,10 +19,7 @@ import { handlerVersion } from "./handlerVersions/v1";
  */
 
 const actionHandler = new ObjectActionHandler(
-    [handlerVersion],
-    process.env.MONGODB_URL,
-    process.env.MONGODB_USER,
-    process.env.MONGODB_PASS
+    [handlerVersion]
 );
 
 /*

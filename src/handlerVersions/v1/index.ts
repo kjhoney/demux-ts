@@ -28,7 +28,6 @@
  * https://github.com/EOSIO/demux-js/blob/develop/examples/eos-transfers/ObjectActionHandler.js
  */
 
-import { model } from "../../models";
 import { transferState } from "../../types/types";
 import { BlockInfo } from "demux";
 
@@ -49,7 +48,6 @@ const updateTransferData = (
     context: any
 ): void => {
     const { amount, symbol } = parseTokenString(payload.data.quantity);
-    console.log(amount);
     state.from = payload.data.from;
     state.to = payload.data.to;
     state.amount = amount;
@@ -58,24 +56,6 @@ const updateTransferData = (
     state.trx_id = payload.transactionId;
     state.indexState.blockNumber = blockInfo.blockNumber;
     state.indexState.blockHash = blockInfo.blockHash;
-    try {
-        let transaction = new model({
-            from: state.from,
-            to: state.to,
-            amount: state.amount,
-            symbol: state.symbol,
-            memo: state.memo,
-            trx_id: state.trx_id,
-            blockNumber: state.indexState.blockNumber,
-            blockHash: state.indexState.blockHash,
-            handlerVersionName: state.indexState.handlerVersionName
-        });
-        transaction.save(function(err) {
-            if (err) console.log("Can not save into transfer collection");
-        });
-    } catch (err) {
-        console.error(err);
-    }
 
     context.stateCopy = JSON.parse(JSON.stringify(state));
 };

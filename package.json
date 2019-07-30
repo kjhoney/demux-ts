@@ -9,9 +9,7 @@
     "demux": "^4.0.0",
     "demux-eos": "4.0.1",
     "dotenv": "^8.0.0",
-    "massive": "^5.11.0",
-    "mongodb": "^3.2.7",
-    "mongoose": "^5.5.15"
+    "massive": "^5.11.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

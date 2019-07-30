@@ -1,12 +1,10 @@
 import {
     AbstractActionHandler,
     IndexState,
-    NotInitializedError,
     Block,
     NextBlock,
     VersionedAction
 } from "demux";
-import mongoose from "mongoose";
 import { transferState } from "./types/types";
 
 const STOP_AT = parseInt(process.env.STOP_AT);
@@ -22,39 +20,9 @@ const stopAt = (blockNumber: number) => {
 
 export class ObjectActionHandler extends AbstractActionHandler {
     constructor(
-        [handleVersion]: any,
-        uri: string,
-        username: string,
-        password: string
+        [handleVersion]: any
     ) {
         super([handleVersion]);
-        let options = {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            user: username,
-            pass: password
-        };
-        console.log(uri);
-        mongoose.connect(uri, options);
-        mongoose.set("debug", true);
-        mongoose.connection.on("connected", () => {
-            console.info(`Mongoose default connection open to ${uri}`);
-        });
-        mongoose.connection.on(
-            "error",
-            console.error.bind(console, "Mongoose default connection error:")
-        );
-        mongoose.connection.on("disconnected", () => {
-            console.info("Mongoose default connection disconnected");
-        });
-        process.on("SIGINT", () => {
-            mongoose.connection.close(() => {
-                console.info(
-                    "Mongoose default connection disconnected through app termination"
-                );
-                process.exit(0);
-            });
-        });
     }
 
     public state: transferState = {
